@@ -11,10 +11,9 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^0.1.2
-  firebase_core: ^0.4.3+1
   flutter_bloc: ^3.1.0
   font_awesome_flutter: ^8.5.0
-  dio: 3.0.8
+  dio: ^3.0.8
 
 dev_dependencies:
   flutter_test:
@@ -23,3 +22,22 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
+  assets:
+    - assets/images/me.JPG
+
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf
+        - asset: assets/fonts/Montserrat-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Montserrat-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Montserrat-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Montserrat-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Montserrat-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Montserrat-Light.ttf
+          weight: 300
