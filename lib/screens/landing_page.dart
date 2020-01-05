@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:sunfoxx_landing/widgets/navbar.dart';
 
@@ -14,19 +12,14 @@ class LandingPage extends StatelessWidget {
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
             colors: [
-              Color(0xff141E30),
-              Color(0xff243B55),
+              Theme.of(context).primaryColorDark,
+              Theme.of(context).primaryColor,
             ],
           ),
         ),
         child: Column(
           children: <Widget>[
             Navbar(),
-            Image(
-              image: AssetImage('assets/images/me.JPG'),
-              height: 400,
-              fit: BoxFit.fitWidth,
-            ),
             Center(
               child: Text(
                 'Text',

@@ -13,6 +13,7 @@ class LandingApp extends StatelessWidget {
         DefaultWidgetsLocalizations.delegate,
       ],
       theme: ThemeData(
+        accentColor: Color(0xffff4d00),
         primaryColor: Color(0xff243B55),
         primaryColorDark: Color(0xff141E30),
         scaffoldBackgroundColor: Colors.transparent,
