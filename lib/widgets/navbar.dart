@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:sunfoxx_landing/utils/constants.dart';
+import 'dart:math' as math;
 
 class Navbar extends StatelessWidget {
   @override
@@ -13,93 +14,106 @@ class Navbar extends StatelessWidget {
           return Stack(
             overflow: Overflow.visible,
             children: <Widget>[
-              Image(
-                height: Metrics.NAVBAR_HEADER_HEIGHT,
-                image: AssetImage('assets/images/me.jpg'),
-                fit: BoxFit.fitWidth,
-                width: double.infinity,
-                alignment: Alignment.topCenter,
-                color: Colors.white.withOpacity(0.55),
-                colorBlendMode: BlendMode.hue,
-                filterQuality: FilterQuality.medium,
-              ),
-              Container(
-                padding: const EdgeInsets.all(Metrics.NAVBAR_MARGIN_DESKTOP),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.transparent,
-                      Theme.of(context).primaryColorDark.withOpacity(0.3),
-                    ],
+              Opacity(
+                opacity: 0.99,
+                child: Transform.rotate(
+                  angle: math.pi,
+                  child: Image(
+                    height: Metrics.NAVBAR_HEADER_HEIGHT,
+                    image: AssetImage('assets/images/me.jpg'),
+                    fit: BoxFit.fitWidth,
+                    width: double.infinity,
+                    alignment: Alignment.bottomCenter,
+                    color: Colors.white.withOpacity(0.55),
+                    colorBlendMode: BlendMode.hue,
+                    filterQuality: FilterQuality.medium,
                   ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    // logo
-                    RichText(
-                      text: TextSpan(
-                        text: 'Sun',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 48.0,
-                          color: Colors.white,
-                          shadows: <Shadow>[
-                            Shadow(
-                              color: Colors.black,
-                              offset: Offset(2.0, 1.0),
-                              blurRadius: 10.0,
-                            )
+              ),
+              Positioned.fill(
+                child: Container(
+                  alignment: Alignment.topLeft,
+                  padding: const EdgeInsets.all(Metrics.NAVBAR_MARGIN_DESKTOP),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      stops: [0, 0.6, 0.95],
+                      colors: [
+                        Theme.of(context).primaryColorDark.withOpacity(0.9),
+                        Theme.of(context).primaryColorLight.withOpacity(0.35),
+                        Colors.transparent,
+                      ],
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      // logo
+                      RichText(
+                        text: TextSpan(
+                          text: 'Sun',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 48.0,
+                            color: Colors.white,
+                            shadows: <Shadow>[
+                              Shadow(
+                                color: Colors.black,
+                                offset: Offset(2.0, 1.0),
+                                blurRadius: 10.0,
+                              )
+                            ],
+                          ),
+                          children: [
+                            TextSpan(
+                              text: 'Foxx',
+                              style: TextStyle(
+                                color: Theme.of(context).accentColor,
+                              ),
+                            ),
                           ],
                         ),
-                        children: [
-                          TextSpan(
-                            text: 'Foxx',
-                            style: TextStyle(
-                              color: Theme.of(context).accentColor,
-                            ),
-                          ),
-                        ],
                       ),
-                    ),
-                    // navbar itself
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            'Home',
-                            style: subheadStyle,
-                          ),
-                          SizedBox(width: Metrics.NAVBAR_MARGIN_DESKTOP),
-                          Text(
-                            'About Me',
-                            style: subheadStyle,
-                          ),
-                          SizedBox(width: Metrics.NAVBAR_MARGIN_DESKTOP),
-                          Text(
-                            'Music',
-                            style: subheadStyle,
-                          ),
-                          SizedBox(width: Metrics.NAVBAR_MARGIN_DESKTOP),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 5, horizontal: 10),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).accentColor,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Text(
-                              'Contact',
+                      // navbar itself
+                      Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              'Home',
                               style: subheadStyle,
                             ),
-                          ),
-                        ],
+                            SizedBox(width: Metrics.NAVBAR_MARGIN_DESKTOP),
+                            Text(
+                              'About Me',
+                              style: subheadStyle,
+                            ),
+                            SizedBox(width: Metrics.NAVBAR_MARGIN_DESKTOP),
+                            Text(
+                              'Music',
+                              style: subheadStyle,
+                            ),
+                            SizedBox(width: Metrics.NAVBAR_MARGIN_DESKTOP),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 5, horizontal: 10),
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).accentColor,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Text(
+                                'Contact',
+                                style: subheadStyle,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -110,13 +124,18 @@ class Navbar extends StatelessWidget {
               overflow: Overflow.clip,
               children: <Widget>[
                 Positioned.fill(
-                  child: Image(
-                    image: AssetImage('assets/images/me.jpg'),
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    alignment: Alignment.topCenter,
-                    color: Colors.white.withOpacity(0.55),
-                    colorBlendMode: BlendMode.hue,
+                  child: RepaintBoundary(
+                    child: Transform.rotate(
+                      angle: math.pi,
+                      child: Image(
+                        image: AssetImage('assets/images/me.jpg'),
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        alignment: Alignment.bottomCenter,
+                        color: Colors.white.withOpacity(0.55),
+                        colorBlendMode: BlendMode.hue,
+                      ),
+                    ),
                   ),
                 ),
                 Container(
