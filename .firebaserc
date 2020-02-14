@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "sunfoxx-landing"
+    "default": "sunfoxx-landing",
+    "production": "sunfoxx-landing"
   }
 }

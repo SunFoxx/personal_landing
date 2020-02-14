@@ -1,3 +1,5 @@
+import 'dart:math' as Math;
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +22,10 @@ class ReviewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenSize = MediaQuery.of(context).size.width;
     bool isMobile = screenSize <= Metrics.MOBILE_DEVICE_SIZE;
+    double ratingBarSize = screenSize > Metrics.MOBILE_DEVICE_SIZE
+        ? 100
+        : Math.max(screenSize, Metrics.MINIMAL_SCREEN_WIDTH) *
+            (100 / Metrics.MOBILE_DEVICE_SIZE);
 
     return Container(
       decoration: BoxDecoration(
@@ -45,12 +51,10 @@ class ReviewCard extends StatelessWidget {
         textDirection: reversed ? TextDirection.rtl : TextDirection.ltr,
         children: <Widget>[
           Container(
-            width: screenSize > Metrics.MOBILE_DEVICE_SIZE
-                ? 100
-                : screenSize * (100 / Metrics.MOBILE_DEVICE_SIZE),
+            width: ratingBarSize,
             height: screenSize > Metrics.MOBILE_DEVICE_SIZE
                 ? 125
-                : screenSize * (100 / Metrics.MOBILE_DEVICE_SIZE) + 25,
+                : ratingBarSize + 25,
             child: Stack(
               alignment: Alignment.center,
               children: <Widget>[
@@ -78,7 +82,8 @@ class ReviewCard extends StatelessWidget {
                   ),
                   child: AutoSizeText(
                     '${rating * 10}/10',
-                    minFontSize: 14,
+                    minFontSize: 10,
+                    overflow: TextOverflow.visible,
                     maxLines: 1,
                     style: Theme.of(context)
                         .textTheme
