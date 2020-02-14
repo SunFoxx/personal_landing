@@ -1,6 +1,7 @@
 import 'dart:math' as Math;
 
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sunfoxx_landing/utils/constants.dart';
@@ -18,9 +19,12 @@ class AboutMe extends StatelessWidget {
           // Avatar ring
           Container(
             padding: EdgeInsets.only(right: 10.0),
+            constraints: BoxConstraints(maxWidth: 140),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                // text blob
                 Container(
                   padding: EdgeInsets.only(bottom: 10.0),
                   child: Stack(
@@ -65,10 +69,8 @@ class AboutMe extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  width: 120,
-                  height: 120,
-                  margin: EdgeInsets.only(right: 45),
-                  padding: const EdgeInsets.all(4.0),
+                  margin: EdgeInsets.only(right: 35),
+                  padding: const EdgeInsets.all(3.0),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
@@ -100,8 +102,10 @@ class AboutMe extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.only(top: 8.0),
-                  child: Text(
+                  child: AutoSizeText(
                     'Egor Sharoha',
+                    maxLines: 2,
+                    minFontSize: 22.0,
                     style: Theme.of(context).textTheme.headline1.copyWith(
                       fontSize: 38,
                       shadows: <Shadow>[
@@ -115,38 +119,35 @@ class AboutMe extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: RichText(
-                      maxLines: 2,
-                      text: TextSpan(
-                        style: Theme.of(context).textTheme.headline3.copyWith(
-                          fontSize: 18,
-                          shadows: <Shadow>[
-                            Shadow(
-                              color: Colors.black.withOpacity(0.6),
-                              offset: Offset(1.0, 1.0),
-                              blurRadius: 1.0,
-                            )
-                          ],
-                        ),
-                        children: [
-                          TextSpan(text: 'Cross-platform ', children: [
-                            TextSpan(
-                              text: 'developer',
-                              style: TextStyle(color: Colors.greenAccent[100]),
-                            )
-                          ]),
-                          TextSpan(text: ', electronic ', children: [
-                            TextSpan(
-                              text: 'music artist',
-                              style: TextStyle(color: Colors.purple[100]),
-                            )
-                          ]),
-                          TextSpan(text: ', bad joker')
+                  child: AutoSizeText.rich(
+                    TextSpan(
+                      style: Theme.of(context).textTheme.headline3.copyWith(
+                        fontSize: 18,
+                        shadows: <Shadow>[
+                          Shadow(
+                            color: Colors.black.withOpacity(0.6),
+                            offset: Offset(1.0, 1.0),
+                            blurRadius: 1.0,
+                          )
                         ],
                       ),
+                      children: [
+                        TextSpan(text: 'Cross-platform ', children: [
+                          TextSpan(
+                            text: 'developer',
+                            style: TextStyle(color: Colors.greenAccent[100]),
+                          )
+                        ]),
+                        TextSpan(text: ', electronic ', children: [
+                          TextSpan(
+                            text: 'music artist',
+                            style: TextStyle(color: Colors.purple[100]),
+                          )
+                        ]),
+                        TextSpan(text: ', bad joker')
+                      ],
                     ),
+                    minFontSize: 12.0,
                   ),
                 ),
               ],
