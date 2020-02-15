@@ -3,20 +3,13 @@ import 'dart:math' as Math;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sunfoxx_landing/state/model/review.dart';
 import 'package:sunfoxx_landing/utils/constants.dart';
 
 class ReviewCard extends StatelessWidget {
-  final double rating;
-  final String review;
-  final String author;
-  final bool reversed;
+  final Review review;
 
-  ReviewCard({
-    this.rating = 1.0,
-    this.review = '',
-    this.author = '',
-    this.reversed = false,
-  });
+  ReviewCard(this.review);
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +23,8 @@ class ReviewCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          begin: reversed ? Alignment.topCenter : Alignment.topCenter,
-          end: reversed ? Alignment.centerLeft : Alignment.bottomRight,
+          begin: review.reversed ? Alignment.topCenter : Alignment.topCenter,
+          end: review.reversed ? Alignment.centerLeft : Alignment.bottomRight,
           colors: [
             Colors.transparent,
             Colors.white70.withOpacity(0.1),
@@ -48,7 +41,7 @@ class ReviewCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
-        textDirection: reversed ? TextDirection.rtl : TextDirection.ltr,
+        textDirection: review.reversed ? TextDirection.rtl : TextDirection.ltr,
         children: <Widget>[
           Container(
             width: ratingBarSize,
@@ -63,12 +56,13 @@ class ReviewCard extends StatelessWidget {
                     padding:
                         EdgeInsets.symmetric(horizontal: 5.0, vertical: 20),
                     child: CircularProgressIndicator(
-                      value: rating,
+                      value: review.rating,
                       strokeWidth: screenSize <= Metrics.MOBILE_TINY_DEVICE_SIZE
                           ? 5
                           : 10,
                       valueColor: AlwaysStoppedAnimation(
-                        Color.lerp(Colors.red, Colors.greenAccent, rating),
+                        Color.lerp(
+                            Colors.red, Colors.greenAccent, review.rating),
                       ),
                       backgroundColor: Colors.white.withOpacity(0.05),
                     ),
@@ -81,7 +75,7 @@ class ReviewCard extends StatelessWidget {
                         : 11.0,
                   ),
                   child: AutoSizeText(
-                    '${rating * 10}/10',
+                    '${review.rating * 10}/10',
                     minFontSize: 10,
                     overflow: TextOverflow.visible,
                     maxLines: 1,
@@ -104,7 +98,7 @@ class ReviewCard extends StatelessWidget {
             alignment: Alignment.center,
             decoration: BoxDecoration(color: Colors.white.withOpacity(0.25)),
           ),
-          !reversed
+          !review.reversed
               ? Container(
                   alignment: Alignment.topCenter,
                   child:
@@ -119,13 +113,13 @@ class ReviewCard extends StatelessWidget {
               child: Stack(
                 children: <Widget>[
                   AutoSizeText(
-                    '«$review»',
+                    '«${review.review}»',
                     minFontSize: 14.0,
                     style: Theme.of(context).textTheme.overline,
                   ),
                   Container(
                     child: Text(
-                      author,
+                      review.author,
                       style: Theme.of(context).textTheme.headline3,
                     ),
                     alignment: Alignment.bottomRight,
@@ -134,7 +128,7 @@ class ReviewCard extends StatelessWidget {
               ),
             ),
           ),
-          reversed
+          review.reversed
               ? Container(
                   alignment: Alignment.topCenter,
                   child:

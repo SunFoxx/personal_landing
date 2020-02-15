@@ -3,7 +3,7 @@ import 'dart:math' as Math;
 import 'package:flutter/material.dart';
 import 'package:sunfoxx_landing/utils/constants.dart';
 import 'package:sunfoxx_landing/widgets/navbar.dart';
-import 'package:sunfoxx_landing/widgets/review_card.dart';
+import 'package:sunfoxx_landing/widgets/reviews_list.dart';
 
 class LandingPage extends StatelessWidget {
   @override
@@ -35,21 +35,10 @@ class LandingPage extends StatelessWidget {
                   child: SingleChildScrollView(
                     primary: true,
                     child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Navbar(),
-                        ReviewCard(
-                          rating: 0.9,
-                          review: "Proven to be responsible and initiative. No "
-                              "disadvantages found, except of lacking ability live up "
-                              "to great expectations",
-                          author: "My mom",
-                        ),
-                        ReviewCard(
-                          rating: 0.2,
-                          reversed: true,
-                          review: "Who the f*#k is that???",
-                          author: "Elon Musk",
-                        ),
+                        ReviewsList(),
                       ],
                     ),
                   ),
