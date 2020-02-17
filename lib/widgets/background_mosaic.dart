@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
+import 'package:sunfoxx_landing/theme/main_theme.dart';
 import 'package:sunfoxx_landing/utils/constants.dart';
 
 class BackgroundMosaic extends StatefulWidget {
@@ -10,11 +11,11 @@ class BackgroundMosaic extends StatefulWidget {
 class _BackgroundMosaicState extends State<BackgroundMosaic> {
   @override
   Widget build(BuildContext context) {
-    Color backgroundPurple1 = Colors.pinkAccent.withOpacity(0.5);
-    Color backgroundPurple2 = Colors.purple[800].withOpacity(0.6);
+    Color backgroundPurple1 = AppColors.backgroundPurple1.withOpacity(0.5);
+    Color backgroundPurple2 = AppColors.backgroundPurple2.withOpacity(0.6);
 
-    Color backgroundBlue1 = Colors.cyanAccent;
-    Color backgroundBlue2 = Colors.lightBlue[900];
+    Color backgroundBlue1 = AppColors.backgroundBlue1;
+    Color backgroundBlue2 = AppColors.backgroundBlue2;
 
     List<double> stops = List();
     List<Color> purpleColors = List();

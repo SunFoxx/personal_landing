@@ -11,7 +11,7 @@ class LandingApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ListenableProvider<PageState>(create: (_) => PageState()),
+        ChangeNotifierProvider<PageState>(create: (_) => PageState()),
       ],
       child: MaterialApp(
         home: LandingPage(),

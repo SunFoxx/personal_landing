@@ -68,27 +68,26 @@ class AboutMe extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(right: 35),
-                  padding: const EdgeInsets.all(3.0),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: RadialGradient(
-                        center: Alignment.topLeft,
-                        radius: 2,
-                        stops: [0, 0.35, 0.5, 1],
-                        colors: [
-                          Colors.transparent,
-                          Colors.transparent,
-                          Colors.orange[200].withOpacity(0.5),
-                          Colors.orangeAccent.withOpacity(0.9),
-                        ],
-                      )),
-                  child: Container(
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(shape: BoxShape.circle),
-                    child: Image(image: AssetImage('assets/images/me.jpg')),
+                Transform.rotate(
+                  angle: -Math.pi / 4,
+                  child: Transform.scale(
+                    scale: 0.9,
+                    child: Container(
+                      margin: EdgeInsets.only(right: 25, top: 20),
+                      color: Colors.grey[900].withOpacity(0.8),
+                      alignment: Alignment.center,
+                      child: Transform.translate(
+                        offset: Offset(-7, -7),
+                        child: Container(
+                          child: AspectRatio(
+                            aspectRatio: 1.0,
+                            child: Image(
+                                fit: BoxFit.cover,
+                                image: AssetImage('assets/images/me.jpg')),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -118,37 +117,35 @@ class AboutMe extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(
-                  child: AutoSizeText.rich(
-                    TextSpan(
-                      style: Theme.of(context).textTheme.headline3.copyWith(
-                        fontSize: 18,
-                        shadows: <Shadow>[
-                          Shadow(
-                            color: Colors.black.withOpacity(0.6),
-                            offset: Offset(1.0, 1.0),
-                            blurRadius: 1.0,
-                          )
-                        ],
-                      ),
-                      children: [
-                        TextSpan(text: 'Cross-platform ', children: [
-                          TextSpan(
-                            text: 'developer',
-                            style: TextStyle(color: Colors.greenAccent[100]),
-                          )
-                        ]),
-                        TextSpan(text: ', electronic ', children: [
-                          TextSpan(
-                            text: 'music artist',
-                            style: TextStyle(color: Colors.purple[100]),
-                          )
-                        ]),
-                        TextSpan(text: ', bad joker')
+                AutoSizeText.rich(
+                  TextSpan(
+                    style: Theme.of(context).textTheme.headline3.copyWith(
+                      fontSize: 18,
+                      shadows: <Shadow>[
+                        Shadow(
+                          color: Colors.black.withOpacity(0.6),
+                          offset: Offset(1.0, 1.0),
+                          blurRadius: 1.0,
+                        )
                       ],
                     ),
-                    minFontSize: 12.0,
+                    children: [
+                      TextSpan(text: 'Cross-platform ', children: [
+                        TextSpan(
+                          text: 'developer',
+                          style: TextStyle(color: Colors.greenAccent[100]),
+                        )
+                      ]),
+                      TextSpan(text: ', electronic ', children: [
+                        TextSpan(
+                          text: 'music artist',
+                          style: TextStyle(color: Colors.purple[100]),
+                        )
+                      ]),
+                      TextSpan(text: ', bad joker')
+                    ],
                   ),
+                  minFontSize: 12.0,
                 ),
               ],
             ),
@@ -222,27 +219,26 @@ class AboutMe extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(right: 25),
-                      padding: const EdgeInsets.all(4.0),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          gradient: RadialGradient(
-                            center: Alignment.topLeft,
-                            radius: 2,
-                            stops: [0, 0.35, 0.5, 1],
-                            colors: [
-                              Colors.transparent,
-                              Colors.transparent,
-                              Colors.orange[200].withOpacity(0.5),
-                              Colors.orangeAccent.withOpacity(0.9),
-                            ],
-                          )),
-                      child: Container(
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(shape: BoxShape.circle),
-                        child: Image(image: AssetImage('assets/images/me.jpg')),
+                    child: Transform.rotate(
+                      angle: -Math.pi / 4,
+                      child: Transform.scale(
+                        scale: 0.7,
+                        child: Container(
+                          margin: EdgeInsets.only(right: 25, top: 20),
+                          color: Colors.grey[900].withOpacity(0.8),
+                          alignment: Alignment.center,
+                          child: Transform.translate(
+                            offset: Offset(-15, -15),
+                            child: Container(
+                              child: AspectRatio(
+                                aspectRatio: 1.0,
+                                child: Image(
+                                    fit: BoxFit.cover,
+                                    image: AssetImage('assets/images/me.jpg')),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),

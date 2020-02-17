@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:sunfoxx_landing/utils/constants.dart';
 import 'package:sunfoxx_landing/widgets/navbar.dart';
 import 'package:sunfoxx_landing/widgets/reviews_list.dart';
+import 'package:sunfoxx_landing/widgets/role_selector.dart';
 
 class LandingPage extends StatelessWidget {
   @override
@@ -39,6 +40,7 @@ class LandingPage extends StatelessWidget {
                       children: <Widget>[
                         Navbar(),
                         ReviewsList(),
+                        RoleSelector(),
                       ],
                     ),
                   ),

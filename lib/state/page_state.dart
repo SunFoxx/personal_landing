@@ -1,8 +1,15 @@
 import 'package:flutter/foundation.dart';
 import 'package:sunfoxx_landing/state/model/review.dart';
 
+enum Role {
+  NONE,
+  DEVELOPER,
+  MUSICIAN,
+}
+
 class PageState with ChangeNotifier {
   List<Review> reviews;
+  Role role = Role.NONE;
 
   PageState() {
     reviews = [
@@ -20,5 +27,10 @@ class PageState with ChangeNotifier {
         author: "Elon Musk",
       ),
     ];
+  }
+
+  void setRole(Role value) {
+    role = value;
+    notifyListeners();
   }
 }

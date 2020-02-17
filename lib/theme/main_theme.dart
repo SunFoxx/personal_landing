@@ -45,3 +45,14 @@ ThemeData mainTheme = ThemeData(
     ),
   ),
 );
+
+class AppColors {
+  static Color backgroundPurple1 = Colors.pinkAccent;
+  static Color backgroundPurple2 = Colors.purple[800];
+
+  static Color backgroundBlue1 = Colors.cyanAccent;
+  static Color backgroundBlue2 = Colors.lightBlue[900];
+
+  static Color roleCard1 = Color(0xff95BAE5);
+  static Color roleCard2 = Color(0xff9067C6);
+}
