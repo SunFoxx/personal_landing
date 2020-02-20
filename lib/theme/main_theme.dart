@@ -7,6 +7,7 @@ ThemeData mainTheme = ThemeData(
   textTheme: TextTheme(
     bodyText1: TextStyle(
       fontFamily: 'Montserrat',
+      fontSize: 16.0,
       color: Colors.white,
     ),
     subtitle1: TextStyle(

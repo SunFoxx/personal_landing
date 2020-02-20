@@ -1,55 +1,46 @@
-import 'dart:math' as Math;
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sunfoxx_landing/utils/constants.dart';
+import 'package:provider/provider.dart';
+import 'package:sunfoxx_landing/state/page_state.dart';
+import 'package:sunfoxx_landing/widgets/base/screen.dart';
+import 'package:sunfoxx_landing/widgets/details_slider.dart';
 import 'package:sunfoxx_landing/widgets/navbar.dart';
 import 'package:sunfoxx_landing/widgets/reviews_list.dart';
-import 'package:sunfoxx_landing/widgets/role_selector.dart';
+import 'package:sunfoxx_landing/widgets/role/role_selector.dart';
 
-class LandingPage extends StatelessWidget {
+class LandingPage extends StatefulWidget {
+  @override
+  _LandingPageState createState() => _LandingPageState();
+}
+
+class _LandingPageState extends State<LandingPage> {
+  ScrollController _scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _scrollController.dispose();
+    Provider.of<PageState>(context).pageScroll = null;
+  }
+
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            minWidth: Metrics.MINIMAL_SCREEN_WIDTH,
-            maxWidth: Math.max(Metrics.MINIMAL_SCREEN_WIDTH, screenWidth),
-          ),
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [
-                        Theme.of(context).primaryColorDark,
-                        Theme.of(context).primaryColor,
-                      ],
-                    ),
-                  ),
-                  child: SingleChildScrollView(
-                    primary: true,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Navbar(),
-                        ReviewsList(),
-                        RoleSelector(),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+    Provider.of<PageState>(context).pageScroll = _scrollController;
+
+    return Screen(
+      children: <Widget>[
+        Navbar(),
+        ReviewsList(),
+        RoleSelector(),
+        DetailsSlider(),
+      ],
+      scrollController: _scrollController,
     );
   }
 }

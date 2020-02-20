@@ -117,35 +117,37 @@ class AboutMe extends StatelessWidget {
                     ),
                   ),
                 ),
-                AutoSizeText.rich(
-                  TextSpan(
-                    style: Theme.of(context).textTheme.headline3.copyWith(
-                      fontSize: 18,
-                      shadows: <Shadow>[
-                        Shadow(
-                          color: Colors.black.withOpacity(0.6),
-                          offset: Offset(1.0, 1.0),
-                          blurRadius: 1.0,
-                        )
+                Flexible(
+                  child: AutoSizeText.rich(
+                    TextSpan(
+                      style: Theme.of(context).textTheme.headline3.copyWith(
+                        fontSize: 18,
+                        shadows: <Shadow>[
+                          Shadow(
+                            color: Colors.black.withOpacity(0.6),
+                            offset: Offset(1.0, 1.0),
+                            blurRadius: 1.0,
+                          )
+                        ],
+                      ),
+                      children: [
+                        TextSpan(text: 'Cross-platform ', children: [
+                          TextSpan(
+                            text: 'developer',
+                            style: TextStyle(color: Colors.greenAccent[100]),
+                          )
+                        ]),
+                        TextSpan(text: ', electronic ', children: [
+                          TextSpan(
+                            text: 'music artist',
+                            style: TextStyle(color: Colors.purple[100]),
+                          )
+                        ]),
+                        TextSpan(text: ', bad joker')
                       ],
                     ),
-                    children: [
-                      TextSpan(text: 'Cross-platform ', children: [
-                        TextSpan(
-                          text: 'developer',
-                          style: TextStyle(color: Colors.greenAccent[100]),
-                        )
-                      ]),
-                      TextSpan(text: ', electronic ', children: [
-                        TextSpan(
-                          text: 'music artist',
-                          style: TextStyle(color: Colors.purple[100]),
-                        )
-                      ]),
-                      TextSpan(text: ', bad joker')
-                    ],
+                    minFontSize: 12.0,
                   ),
-                  minFontSize: 12.0,
                 ),
               ],
             ),

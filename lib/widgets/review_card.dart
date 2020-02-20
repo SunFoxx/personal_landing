@@ -1,8 +1,9 @@
 import 'dart:math' as Math;
-import 'package:flutter_widgets/flutter_widgets.dart';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_widgets/flutter_widgets.dart';
 import 'package:sunfoxx_landing/state/model/review.dart';
 import 'package:sunfoxx_landing/utils/constants.dart';
 
@@ -45,6 +46,11 @@ class _ReviewCardState extends State<ReviewCard>
     bool isShown = false;
     double screenSize = MediaQuery.of(context).size.width;
     bool isMobile = screenSize <= Metrics.MOBILE_DEVICE_SIZE;
+    bool isTiny = screenSize <= Metrics.MOBILE_TINY_DEVICE_SIZE;
+    double horizontalPadding = isMobile
+        ? Metrics.HORIZONTAL_MARGIN_MOBILE
+        : Metrics.HORIZONTAL_MARGIN_DESKTOP;
+
     double ratingBarSize = screenSize > Metrics.MOBILE_DEVICE_SIZE
         ? 100
         : Math.max(screenSize, Metrics.MINIMAL_SCREEN_WIDTH) *
@@ -75,9 +81,7 @@ class _ReviewCardState extends State<ReviewCard>
           ),
           alignment: Alignment.center,
           padding: EdgeInsets.symmetric(
-            horizontal: isMobile
-                ? Metrics.HORIZONTAL_MARGIN_MOBILE
-                : Metrics.HORIZONTAL_MARGIN_DESKTOP,
+            horizontal: isTiny ? 0.0 : horizontalPadding,
             vertical: 10.0,
           ),
           child: Row(
@@ -127,12 +131,12 @@ class _ReviewCardState extends State<ReviewCard>
                       padding: EdgeInsets.symmetric(
                         horizontal:
                             screenSize <= Metrics.MOBILE_TINY_DEVICE_SIZE
-                                ? 6.0
+                                ? 7.0
                                 : 11.0,
                       ),
                       child: AutoSizeText(
                         '${widget.review.rating * 10}/10',
-                        minFontSize: 10,
+                        minFontSize: 9,
                         overflow: TextOverflow.visible,
                         maxLines: 1,
                         style: Theme.of(context)
@@ -171,7 +175,7 @@ class _ReviewCardState extends State<ReviewCard>
                     children: <Widget>[
                       AutoSizeText(
                         '«${widget.review.review}»',
-                        minFontSize: 16.0,
+                        minFontSize: 14.0,
                         style: Theme.of(context).textTheme.overline,
                       ),
                       Container(

@@ -6,4 +6,6 @@ class Metrics {
   static const NAVBAR_HEADER_HEIGHT = 430.0;
   static const HORIZONTAL_MARGIN_DESKTOP = 30.0;
   static const HORIZONTAL_MARGIN_MOBILE = 20.0;
+
+  static const Duration ANIMATION_DURATION = Duration(milliseconds: 750);
 }
