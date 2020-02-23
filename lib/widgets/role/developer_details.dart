@@ -34,38 +34,41 @@ class DeveloperDetails extends StatelessWidget {
                     : MainAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(height: isMobile ? 60 : 75),
-                  Flexible(
-                    child: AutoSizeText.rich(
-                      TextSpan(
-                          style: Theme.of(context).textTheme.bodyText1.copyWith(
-                            shadows: [
-                              Shadow(
-                                offset: Offset(1.0, 1.0),
-                                blurRadius: 3.0,
-                                color: Colors.black.withOpacity(0.65),
-                              )
-                            ],
-                            height: 1.3,
-                          ),
-                          children: [
-                            TextSpan(
-                              text: "Cross-platform developer\n",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w700, fontSize: 35.0),
+                  FittedBox(
+                    child: Container(
+                      child: AutoSizeText.rich(
+                        TextSpan(
+                            style:
+                                Theme.of(context).textTheme.bodyText1.copyWith(
+                              shadows: [
+                                Shadow(
+                                  offset: Offset(1.0, 1.0),
+                                  blurRadius: 3.0,
+                                  color: Colors.black.withOpacity(0.65),
+                                )
+                              ],
+                              height: 1.3,
                             ),
-                            TextSpan(
-                              text:
-                                  "experienced with client-side tools that target several platforms",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w500, fontSize: 24.0),
-                            ),
-                          ]),
-                      textScaleFactor: isMobile ? 0.8 : 1,
-                      textAlign: TextAlign.center,
-                      maxFontSize: 32.0,
-                      wrapWords: false,
+                            children: [
+                              TextSpan(
+                                text: "Cross-platform developer\n",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 35.0),
+                              ),
+                              TextSpan(
+                                text:
+                                    "experienced with client-side tools\nthat target several platforms",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 24.0),
+                              ),
+                            ]),
+                        textScaleFactor: isMobile ? 0.8 : 1,
+                        textAlign: TextAlign.center,
+                        maxFontSize: 32.0,
+                      ),
                     ),
-                    fit: FlexFit.tight,
                   ),
                 ],
               );

@@ -19,14 +19,13 @@ class AboutMe extends StatelessWidget {
           // Avatar ring
           Container(
             padding: EdgeInsets.only(right: 10.0),
-            constraints: BoxConstraints(maxWidth: 140),
+            constraints: BoxConstraints(maxWidth: 190),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 // text blob
                 Container(
-                  padding: EdgeInsets.only(bottom: 10.0),
                   child: Stack(
                     overflow: Overflow.visible,
                     children: [
@@ -73,7 +72,7 @@ class AboutMe extends StatelessWidget {
                   child: Transform.scale(
                     scale: 0.9,
                     child: Container(
-                      margin: EdgeInsets.only(right: 25, top: 20),
+                      margin: EdgeInsets.only(right: 75, top: 10),
                       color: Colors.grey[900].withOpacity(0.8),
                       alignment: Alignment.center,
                       child: Transform.translate(
@@ -178,7 +177,7 @@ class AboutMe extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.only(bottom: 10.0),
+                    padding: EdgeInsets.only(top: 40.0),
                     child: Stack(
                       overflow: Overflow.visible,
                       children: [

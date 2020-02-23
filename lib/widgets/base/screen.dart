@@ -3,6 +3,7 @@ import 'dart:math' as Math;
 import 'package:flutter/material.dart';
 import 'package:sunfoxx_landing/utils/constants.dart';
 import 'package:sunfoxx_landing/widgets/base/web_scroll_behavior.dart';
+import 'package:sunfoxx_landing/widgets/navbar.dart';
 
 class Screen extends StatefulWidget {
   final ScrollController scrollController;
@@ -46,12 +47,23 @@ class _ScreenState extends State<Screen> {
                         ],
                       ),
                     ),
-                    child: SingleChildScrollView(
-                      controller: widget.scrollController,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: widget.children,
-                      ),
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: <Widget>[
+                        SingleChildScrollView(
+                          controller: widget.scrollController,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: widget.children,
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: Navbar(
+                            scrollController: widget.scrollController,
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ),
