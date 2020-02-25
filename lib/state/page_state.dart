@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:sunfoxx_landing/state/model/review.dart';
 
+import 'model/skill.dart';
+
 enum Role {
   NONE,
   DEVELOPER,
@@ -10,6 +12,7 @@ enum Role {
 
 class PageState with ChangeNotifier {
   List<Review> reviews;
+  List<Skill> skills;
   Role role = Role.NONE;
   ScrollController _pageScroll;
 
@@ -18,21 +21,38 @@ class PageState with ChangeNotifier {
   }
 
   PageState() {
-    reviews = [
-      Review(
-        rating: 0.9,
-        review: "Proven to be responsible and initiative. No "
-            "disadvantages found, except of lacking ability live up "
-            "to great expectations",
-        author: "My mom",
+    skills = [
+      Skill(
+        name: 'Flutter',
+        rating: 7,
+        imageUrl: 'https://logodix.com/logo/374736.png',
       ),
-      Review(
-        rating: 0.2,
-        reversed: true,
-        review: "Who the f*#k is that???",
-        author: "Elon Musk",
+      Skill(
+        name: 'Java-Script',
+        rating: 9,
+        imageUrl: 'https://logodix.com/logo/374736.png',
       ),
-    ];
+      Skill(
+        name: 'React-Native',
+        rating: 9,
+        imageUrl: 'https://logodix.com/logo/374736.png',
+      ),
+      Skill(
+        name: 'Dart',
+        rating: 7,
+        imageUrl: 'https://logodix.com/logo/374736.png',
+      ),
+      Skill(
+        name: 'Vue.js',
+        rating: 5,
+        imageUrl: 'https://logodix.com/logo/374736.png',
+      ),
+      Skill(
+        name: 'Firebase',
+        rating: 8,
+        imageUrl: 'https://logodix.com/logo/374736.png',
+      ),
+    ]..sort((a, b) => b.rating - a.rating);
   }
 
   void setRole(Role value) {

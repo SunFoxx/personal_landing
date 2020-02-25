@@ -5,8 +5,8 @@ import 'package:sunfoxx_landing/state/page_state.dart';
 import 'package:sunfoxx_landing/widgets/base/screen.dart';
 import 'package:sunfoxx_landing/widgets/details_slider.dart';
 import 'package:sunfoxx_landing/widgets/header.dart';
-import 'package:sunfoxx_landing/widgets/reviews_list.dart';
 import 'package:sunfoxx_landing/widgets/role/role_selector.dart';
+import 'package:sunfoxx_landing/widgets/welcome_instructions.dart';
 
 class LandingPage extends StatefulWidget {
   @override
@@ -36,7 +36,7 @@ class _LandingPageState extends State<LandingPage> {
     return Screen(
       children: <Widget>[
         Header(),
-        ReviewsList(),
+        WelcomeInstructions(),
         RoleSelector(),
         DetailsSlider(),
       ],

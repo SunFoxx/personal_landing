@@ -7,8 +7,6 @@ import 'background_mosaic.dart';
 
 class Header extends StatelessWidget {
   Widget buildMobile(BuildContext context) {
-    TextStyle subheadStyle = Theme.of(context).textTheme.subtitle1;
-
     return SafeArea(
       child: Stack(
         overflow: Overflow.clip,

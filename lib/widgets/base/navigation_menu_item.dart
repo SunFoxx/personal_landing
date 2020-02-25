@@ -31,7 +31,7 @@ class _NavigationMenuItemState<T, W extends NavigationMenuItem>
     return MouseHover(
       child: InkWell(
         onTap: handleTap,
-        hoverColor: Theme.of(context).accentColor,
+        hoverColor: Theme.of(context).primaryColorDark,
         child: Container(
           height: widget.height,
           width: 400,

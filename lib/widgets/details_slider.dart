@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sunfoxx_landing/state/page_state.dart';
 import 'package:sunfoxx_landing/theme/main_theme.dart';
+import 'package:sunfoxx_landing/widgets/resume/cv.dart';
 
 class DetailsSlider extends StatefulWidget {
   DetailsSlider({Key key}) : super(key: key);
@@ -29,8 +30,11 @@ class _DetailsSliderState extends State<DetailsSlider> {
                     topRight: Radius.circular(30),
                   ),
                 ),
-                height: 200,
-              );
+                width: double.infinity,
+                child: AnimatedSwitcher(
+                  duration: Duration(milliseconds: 750),
+                  child: state.role == Role.DEVELOPER ? Resume() : Container(),
+                ));
 
         return AnimatedSwitcher(
           duration: Duration(milliseconds: 1000),

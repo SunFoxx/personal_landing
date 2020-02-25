@@ -123,8 +123,9 @@ class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
                           text: TextSpan(
                             text: 'Sun',
                             style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 48.0,
+                              fontFamily: 'Logo',
+                              fontSize: 44.0,
+                              letterSpacing: -1,
                               color: Colors.white,
                               shadows: <Shadow>[
                                 Shadow(
@@ -138,7 +139,11 @@ class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
                               TextSpan(
                                 text: 'Foxx',
                                 style: TextStyle(
+                                  fontSize: 48.0,
+                                  letterSpacing: 1,
                                   color: Theme.of(context).accentColor,
+                                  fontFamily: 'Logo',
+                                  fontWeight: FontWeight.w300,
                                 ),
                               ),
                             ],
@@ -174,7 +179,14 @@ class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
                           ),
                           child: Text(
                             'Contact',
-                            style: subheadStyle,
+                            style: subheadStyle.copyWith(
+                              shadows: [
+                                Shadow(
+                                  blurRadius: 1,
+                                  offset: Offset(1, 0.5),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -192,8 +204,6 @@ class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
   }
 
   Widget buildMobile(BuildContext context) {
-    TextStyle subheadStyle = Theme.of(context).textTheme.subtitle1;
-
     return SafeArea(
       child: AnimatedBuilder(
         animation: _animation,
@@ -242,8 +252,9 @@ class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
                           text: TextSpan(
                             text: 'Sun',
                             style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 48.0,
+                              fontFamily: 'Logo',
+                              fontSize: 44.0,
+                              letterSpacing: -1,
                               color: Colors.white,
                               shadows: <Shadow>[
                                 Shadow(
@@ -257,7 +268,11 @@ class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
                               TextSpan(
                                 text: 'Foxx',
                                 style: TextStyle(
+                                  fontSize: 48.0,
+                                  letterSpacing: 1,
                                   color: Theme.of(context).accentColor,
+                                  fontFamily: 'Logo',
+                                  fontWeight: FontWeight.w300,
                                 ),
                               ),
                             ],

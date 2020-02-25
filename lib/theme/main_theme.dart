@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 ThemeData mainTheme = ThemeData(
-  accentColor: Color(0xffff4d00),
+  accentColor: Color(0xffefde14),
   primaryColor: Color(0xff243B55),
+  cardColor: Color(0xff2A4069),
   primaryColorDark: Color(0xff141E30),
   textTheme: TextTheme(
     bodyText1: TextStyle(
@@ -14,6 +15,12 @@ ThemeData mainTheme = ThemeData(
       fontFamily: 'Montserrat',
       fontWeight: FontWeight.w600,
       color: Colors.white,
+    ),
+    subtitle2: TextStyle(
+      fontFamily: 'Lato',
+      fontWeight: FontWeight.w900,
+      fontSize: 22,
+      color: Color(0xff141E30),
     ),
     headline1: TextStyle(
       fontFamily: 'Montserrat',
