@@ -11,8 +11,14 @@ class RoleSelector extends StatefulWidget {
   _RoleSelectorState createState() => _RoleSelectorState();
 }
 
-class _RoleSelectorState extends State<RoleSelector>
-    with TickerProviderStateMixin {
+class _RoleSelectorState extends State<RoleSelector> {
+  @override
+  void initState() {
+    super.initState();
+    precacheImage(AssetImage('assets/images/dev.jpg'), context);
+    precacheImage(AssetImage('assets/images/music.jpg'), context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<PageState>(
