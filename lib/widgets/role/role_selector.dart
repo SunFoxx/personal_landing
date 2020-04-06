@@ -13,18 +13,14 @@ class RoleSelector extends StatefulWidget {
 
 class _RoleSelectorState extends State<RoleSelector> {
   @override
-  void initState() {
-    super.initState();
+  Widget build(BuildContext context) {
     precacheImage(AssetImage('assets/images/dev.jpg'), context);
     precacheImage(AssetImage('assets/images/music.jpg'), context);
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Consumer<PageState>(
       builder: (_, pageState, child) {
         return Container(
           margin: EdgeInsets.symmetric(vertical: 20.0),
+          constraints: BoxConstraints(maxWidth: Metrics.DESKTOP_MAXIMUM_SIZE),
           child: LayoutBuilder(
             builder: (_, constraints) {
               bool isMobile = MediaQuery.of(context).size.width <=

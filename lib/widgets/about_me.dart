@@ -1,159 +1,27 @@
-import 'dart:math' as Math;
+import 'dart:async';
 
-import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sunfoxx_landing/utils/constants.dart';
-import 'package:sunfoxx_landing/widgets/painters/triangle.dart';
 
-class AboutMe extends StatelessWidget {
-  Widget buildMobile(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(bottom: 10.0, top: 15.0),
-      constraints: BoxConstraints.loose(Size(double.infinity, 200)),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          // Avatar ring
-          Container(
-            padding: EdgeInsets.only(right: 10.0),
-            constraints: BoxConstraints(maxWidth: 190),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                // text blob
-                Container(
-                  child: Stack(
-                    overflow: Overflow.visible,
-                    children: [
-                      Container(
-                        width: 90,
-                        height: 30,
-                        child: Container(
-                          alignment: Alignment.center,
-                          child: TyperAnimatedTextKit(
-                            text: ['Hi, it\'s me!'],
-                            textStyle: Theme.of(context).textTheme.caption,
-                            isRepeatingAnimation: true,
-                            speed: Duration(milliseconds: 50),
-                            pause: Duration(seconds: 7),
-                          ),
-                          padding: EdgeInsets.all(4.0),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(5.0),
-                              bottomRight: Radius.circular(5.0),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        width: 15,
-                        height: 15,
-                        bottom: -10,
-                        left: 0,
-                        child: Transform.rotate(
-                          angle: Math.pi,
-                          child: CustomPaint(
-                            size: Size(1, 1),
-                            painter: TrianglePainter(vertexPosition: 1),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Transform.rotate(
-                  angle: -Math.pi / 4,
-                  child: Transform.scale(
-                    scale: 0.9,
-                    child: Container(
-                      margin: EdgeInsets.only(right: 75, top: 10),
-                      color: Colors.grey[900].withOpacity(0.8),
-                      alignment: Alignment.center,
-                      child: Transform.translate(
-                        offset: Offset(-7, -7),
-                        child: Container(
-                          child: AspectRatio(
-                            aspectRatio: 1.0,
-                            child: Image(
-                                fit: BoxFit.cover,
-                                image: AssetImage('assets/images/me.jpg')),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          // Description
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 8.0),
-                  child: AutoSizeText(
-                    'Egor Sharoha',
-                    maxLines: 2,
-                    minFontSize: 22.0,
-                    style: Theme.of(context).textTheme.headline1.copyWith(
-                      fontSize: 38,
-                      shadows: <Shadow>[
-                        Shadow(
-                          color: Colors.black.withOpacity(0.6),
-                          offset: Offset(1.0, 1.0),
-                          blurRadius: 2.0,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Flexible(
-                  child: AutoSizeText.rich(
-                    TextSpan(
-                      style: Theme.of(context).textTheme.headline3.copyWith(
-                        fontSize: 18,
-                        shadows: <Shadow>[
-                          Shadow(
-                            color: Colors.black.withOpacity(0.6),
-                            offset: Offset(1.0, 1.0),
-                            blurRadius: 1.0,
-                          )
-                        ],
-                      ),
-                      children: [
-                        TextSpan(text: 'Cross-platform ', children: [
-                          TextSpan(
-                            text: 'developer',
-                            style: TextStyle(color: Colors.greenAccent[100]),
-                          )
-                        ]),
-                        TextSpan(text: ', electronic ', children: [
-                          TextSpan(
-                            text: 'music artist',
-                            style: TextStyle(color: Colors.purple[100]),
-                          )
-                        ]),
-                        TextSpan(text: ', bad joker')
-                      ],
-                    ),
-                    minFontSize: 12.0,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+class AboutMe extends StatefulWidget {
+  AboutMe({Key key}) : super(key: key);
+
+  @override
+  _AboutMeState createState() => _AboutMeState();
+}
+
+class _AboutMeState extends State<AboutMe> {
+  bool showSmallnessMeme = false;
+  Timer memeTimer;
+
+  @override
+  void dispose() {
+    super.dispose();
+    if (memeTimer != null) {
+      memeTimer.cancel();
+    }
   }
 
   @override
@@ -161,149 +29,114 @@ class AboutMe extends StatelessWidget {
     bool isMobile =
         MediaQuery.of(context).size.width <= Metrics.MOBILE_DEVICE_SIZE;
 
-    if (!isMobile) {
-      return Container(
-        alignment: Alignment.bottomLeft,
-        padding: EdgeInsets.only(bottom: 10.0, top: 15.0),
-        constraints: BoxConstraints.expand(),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            // Avatar ring
-            Container(
-              padding: EdgeInsets.only(right: 20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+    return Container(
+      constraints: BoxConstraints(maxWidth: Metrics.DESKTOP_MAXIMUM_SIZE),
+      padding: EdgeInsets.symmetric(
+        horizontal: isMobile
+            ? Metrics.HORIZONTAL_MARGIN_MOBILE
+            : Metrics.HORIZONTAL_MARGIN_DESKTOP,
+        vertical: 60.0,
+      ),
+      child: Column(
+        children: <Widget>[
+          Text(
+            '🤝',
+            style: TextStyle(fontSize: 70),
+          ),
+          Text(
+            'Let\'s get acquainted',
+            style: Theme.of(context).textTheme.headline2,
+          ),
+          Stack(
+            alignment: AlignmentDirectional.topCenter,
+            children: <Widget>[
+              // Description text with a picture
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.only(top: 40.0),
-                    child: Stack(
-                      overflow: Overflow.visible,
-                      children: [
-                        Container(
-                          width: 120,
-                          height: 40,
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: TyperAnimatedTextKit(
-                              text: ['Hi, it\'s me!'],
-                              textStyle: Theme.of(context).textTheme.caption,
-                              isRepeatingAnimation: true,
-                              speed: Duration(milliseconds: 50),
-                              pause: Duration(seconds: 7),
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: RichText(
+                        text: TextSpan(
+                          style: Theme.of(context).textTheme.bodyText1.copyWith(
+                                fontSize: 22.0,
+                                height: 1.4,
+                              ),
+                          children: [
+                            TextSpan(
+                              text:
+                                  'While being a creative person I always keep my attention to ',
                             ),
-                            padding: EdgeInsets.all(6.0),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(5.0),
-                                bottomRight: Radius.circular(5.0),
+                            TextSpan(
+                              text: 'small',
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  if (memeTimer != null) {
+                                    memeTimer.cancel();
+                                  }
+                                  setState(() {
+                                    showSmallnessMeme = true;
+                                    memeTimer = Timer(
+                                      Duration(seconds: 4),
+                                      () => setState(() {
+                                        showSmallnessMeme = false;
+                                      }),
+                                    );
+                                  });
+                                },
+                              style: TextStyle(
+                                fontSize: 14.0,
+                                color: Colors.lightBlueAccent,
+                                decoration: TextDecoration.underline,
+                                decorationStyle: TextDecorationStyle.dashed,
                               ),
                             ),
-                          ),
-                        ),
-                        Positioned(
-                          width: 15,
-                          height: 15,
-                          bottom: -10,
-                          left: 0,
-                          child: Transform.rotate(
-                            angle: Math.pi,
-                            child: CustomPaint(
-                              size: Size(1, 1),
-                              painter: TrianglePainter(vertexPosition: 1),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Transform.rotate(
-                      angle: -Math.pi / 4,
-                      child: Transform.scale(
-                        scale: 0.7,
-                        child: Container(
-                          margin: EdgeInsets.only(right: 25, top: 20),
-                          color: Colors.grey[900].withOpacity(0.8),
-                          alignment: Alignment.center,
-                          child: Transform.translate(
-                            offset: Offset(-15, -15),
-                            child: Container(
-                              child: AspectRatio(
-                                aspectRatio: 1.0,
-                                child: Image(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage('assets/images/me.jpg')),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            // Description
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Egor Sharoha',
-                    style: Theme.of(context).textTheme.headline1.copyWith(
-                      shadows: <Shadow>[
-                        Shadow(
-                          color: Colors.black.withOpacity(0.6),
-                          offset: Offset(1.0, 1.0),
-                          blurRadius: 2.0,
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  Container(
-                    child: RichText(
-                      maxLines: 2,
-                      text: TextSpan(
-                        style: Theme.of(context).textTheme.headline3.copyWith(
-                          shadows: <Shadow>[
-                            Shadow(
-                              color: Colors.black.withOpacity(0.6),
-                              offset: Offset(1.0, 1.0),
-                              blurRadius: 1.0,
-                            )
+                            TextSpan(
+                                text:
+                                    '\u00A0details. That\'s why my passion is shared between building beautiful and convenient interfaces and composing complex dance music.'),
                           ],
                         ),
-                        children: [
-                          TextSpan(text: 'Cross-platform ', children: [
-                            TextSpan(
-                              text: 'developer',
-                              style: TextStyle(color: Colors.greenAccent[100]),
-                            )
-                          ]),
-                          TextSpan(text: ', electronic ', children: [
-                            TextSpan(
-                              text: 'music artist',
-                              style: TextStyle(color: Colors.purple[100]),
-                            )
-                          ]),
-                          TextSpan(text: ', bad joker')
-                        ],
                       ),
                     ),
+                    flex: 3,
                   ),
+                  Flexible(
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(minWidth: 100, maxWidth: 250),
+                      child: Image.asset(
+                        'assets/images/full_size_me.png',
+                        fit: BoxFit.scaleDown,
+                      ),
+                    ),
+                  )
                 ],
               ),
-            ),
-          ],
-        ),
-      );
-    } else {
-      return buildMobile(context);
-    }
+              // Meme appear
+              AnimatedOpacity(
+                opacity: showSmallnessMeme ? 1 : 0,
+                duration: Duration(milliseconds: 750),
+                curve: Curves.easeInOutCirc,
+                child: Container(
+                  child: Image.asset(
+                    'assets/images/smallness_meme.png',
+                    fit: BoxFit.cover,
+                  ),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 2.0,
+                      color: Theme.of(context).cardColor,
+                    ),
+                  ),
+                  width: 200,
+                  height: 160,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }

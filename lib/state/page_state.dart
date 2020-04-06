@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:sunfoxx_landing/state/controller/page_state_controller.dart';
 import 'package:sunfoxx_landing/state/model/review.dart';
 
 import 'model/skill.dart';
@@ -15,44 +16,15 @@ class PageState with ChangeNotifier {
   List<Skill> skills;
   Role role = Role.NONE;
   ScrollController _pageScroll;
+  PageStateController _controller;
 
   set pageScroll(ScrollController value) {
     _pageScroll = value;
   }
 
   PageState() {
-    skills = [
-      Skill(
-        name: 'Flutter',
-        rating: 7,
-        imageUrl: 'https://logodix.com/logo/374736.png',
-      ),
-      Skill(
-        name: 'Java-Script',
-        rating: 9,
-        imageUrl: 'https://logodix.com/logo/374736.png',
-      ),
-      Skill(
-        name: 'React-Native',
-        rating: 9,
-        imageUrl: 'https://logodix.com/logo/374736.png',
-      ),
-      Skill(
-        name: 'Dart',
-        rating: 7,
-        imageUrl: 'https://logodix.com/logo/374736.png',
-      ),
-      Skill(
-        name: 'Vue.js',
-        rating: 5,
-        imageUrl: 'https://logodix.com/logo/374736.png',
-      ),
-      Skill(
-        name: 'Firebase',
-        rating: 8,
-        imageUrl: 'https://logodix.com/logo/374736.png',
-      ),
-    ]..sort((a, b) => b.rating - a.rating);
+    _controller = PageStateController(this);
+    _controller.fetchSkills();
   }
 
   void setRole(Role value) {

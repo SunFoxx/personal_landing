@@ -27,14 +27,6 @@ class _WelcomeInstructionState extends State<WelcomeInstruction> {
           fit: StackFit.loose,
           alignment: AlignmentDirectional.bottomCenter,
           children: <Widget>[
-            Align(
-              alignment: Alignment.topCenter,
-              child: Icon(
-                widget.stepIcon,
-                size: 70,
-                color: Theme.of(context).accentColor,
-              ),
-            ),
             Positioned.fill(
               child: Container(
                 padding: EdgeInsets.only(
@@ -55,7 +47,7 @@ class _WelcomeInstructionState extends State<WelcomeInstruction> {
                     SizedBox(height: isTiny ? 0 : 10),
                     Text(
                       widget.description,
-                      style: Theme.of(context).textTheme.bodyText1.copyWith(
+                      style: Theme.of(context).textTheme.bodyText2.copyWith(
                             fontSize: isTiny ? 12 : 16,
                           ),
                       textAlign: TextAlign.center,
@@ -65,6 +57,14 @@ class _WelcomeInstructionState extends State<WelcomeInstruction> {
                 ),
               ),
               top: 40,
+            ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: Icon(
+                widget.stepIcon,
+                size: 70,
+                color: Theme.of(context).accentColor,
+              ),
             ),
           ],
         ),

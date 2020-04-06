@@ -51,19 +51,20 @@ class _SkillCardState extends State<SkillCard>
           opacity: _appearAnimation.value,
           child: Container(
             width: 300,
-            height: 100,
+            height: 70,
             child: Stack(
               alignment: AlignmentDirectional.centerStart,
               children: <Widget>[
                 // long bar
                 Container(
-                  margin: EdgeInsets.only(left: 85),
-                  height: 60,
+                  margin: EdgeInsets.only(left: 65),
+                  height: 50,
                   decoration: BoxDecoration(
                     color: Theme.of(context).cardColor,
                     border: Border.all(
                       width: 2.0,
-                      color: Theme.of(context).primaryColorDark.withOpacity(0.4),
+                      color:
+                          Theme.of(context).primaryColorDark.withOpacity(0.4),
                     ),
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(5.0),
@@ -79,7 +80,8 @@ class _SkillCardState extends State<SkillCard>
                         builder: (_, child) => FractionallySizedBox(
                           alignment: Alignment.centerLeft,
                           widthFactor:
-                          (widget.skill.rating * _appearAnimation.value) / 10,
+                              (widget.skill.rating * _appearAnimation.value) /
+                                  10,
                           heightFactor: 1.0,
                           child: Container(
                             foregroundDecoration: BoxDecoration(
@@ -113,7 +115,7 @@ class _SkillCardState extends State<SkillCard>
                       Center(
                         child: Text(
                           widget.skill.name,
-                          style: Theme.of(context).textTheme.bodyText1,
+                          style: Theme.of(context).textTheme.bodyText2,
                         ),
                       ),
                     ],
@@ -122,16 +124,12 @@ class _SkillCardState extends State<SkillCard>
                 // icon ring
                 Container(
                   width: 100,
-                  height: 100,
+                  height: 70,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(
-                      width: 2.0,
-                      color: Theme.of(context).primaryColorDark.withOpacity(0.5),
-                    ),
                     gradient: RadialGradient(
                       center: Alignment(0.75, 0.2),
-                      radius: 1,
+                      radius: 1.15,
                       colors: [
                         Colors.white,
                         Colors.white,
@@ -139,9 +137,16 @@ class _SkillCardState extends State<SkillCard>
                       ],
                     ),
                   ),
-                  child: Image.network(
-                    widget.skill.imageUrl,
-                    fit: BoxFit.contain,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      child: Image.network(
+                        widget.skill.imageUrl,
+                        fit: BoxFit.scaleDown,
+                      ),
+                    ),
                   ),
                 ),
               ],

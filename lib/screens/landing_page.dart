@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sunfoxx_landing/state/page_state.dart';
+import 'package:sunfoxx_landing/widgets/about_me.dart';
 import 'package:sunfoxx_landing/widgets/base/screen.dart';
 import 'package:sunfoxx_landing/widgets/details_slider.dart';
 import 'package:sunfoxx_landing/widgets/header.dart';
@@ -36,6 +37,7 @@ class _LandingPageState extends State<LandingPage> {
     return Screen(
       children: <Widget>[
         Header(),
+        AboutMe(),
         WelcomeInstructions(),
         RoleSelector(),
         DetailsSlider(),

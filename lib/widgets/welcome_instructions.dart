@@ -14,6 +14,7 @@ class _WelcomeInstructionsState extends State<WelcomeInstructions> {
     bool isMobile =
         MediaQuery.of(context).size.width <= Metrics.MOBILE_DEVICE_SIZE;
     return Container(
+      constraints: BoxConstraints(maxWidth: Metrics.DESKTOP_MAXIMUM_SIZE),
       padding: EdgeInsets.symmetric(
         horizontal: isMobile
             ? Metrics.HORIZONTAL_MARGIN_MOBILE

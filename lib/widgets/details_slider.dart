@@ -23,6 +23,9 @@ class _DetailsSliderState extends State<DetailsSlider> {
             ? SizedBox()
             : AnimatedContainer(
                 duration: Duration(milliseconds: 750),
+                alignment: Alignment.topLeft,
+                constraints: BoxConstraints(
+                    minHeight: MediaQuery.of(context).size.height / 2),
                 decoration: BoxDecoration(
                   color: bgColor,
                   borderRadius: BorderRadius.only(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:sunfoxx_landing/utils/constants.dart';
 
-import 'about_me.dart';
+import 'about_me_header.dart';
 import 'background_mosaic.dart';
 
 class Header extends StatelessWidget {
@@ -19,7 +19,7 @@ class Header extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(Metrics.HORIZONTAL_MARGIN_MOBILE),
-            child: AboutMe(),
+            child: AboutMeHeader(),
           ),
         ],
       ),
@@ -44,13 +44,15 @@ class Header extends StatelessWidget {
             bottom: -1,
             child: Container(
               alignment: Alignment.topLeft,
+              constraints:
+                  BoxConstraints(maxWidth: Metrics.DESKTOP_MAXIMUM_SIZE),
               padding: const EdgeInsets.fromLTRB(
                 Metrics.HORIZONTAL_MARGIN_DESKTOP,
                 Metrics.HORIZONTAL_MARGIN_DESKTOP,
                 Metrics.HORIZONTAL_MARGIN_DESKTOP,
                 0,
               ),
-              child: AboutMe(),
+              child: AboutMeHeader(),
             ),
           ),
         ],

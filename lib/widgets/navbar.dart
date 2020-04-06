@@ -85,12 +85,12 @@ class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
               alignment: Alignment.bottomCenter,
               child: Container(
                 height: navbarHeight,
+                width: double.infinity,
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      blurRadius: 5.0,
+                      blurRadius: 8.0,
                       color: Colors.black.withOpacity(0.5),
-                      spreadRadius: 3.0,
                     )
                   ],
                   gradient: LinearGradient(colors: [
@@ -105,93 +105,97 @@ class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
                       ? Metrics.HORIZONTAL_MARGIN_MOBILE
                       : Metrics.HORIZONTAL_MARGIN_DESKTOP,
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    // Logo
-                    Transform.scale(
-                      scale: getLogoScale(scrollAnimation),
-                      child: Transform.translate(
-                        offset: Offset(
-                          0,
-                          scrollAnimation < 0.75
-                              ? 0
-                              : navbarHeight * 1.5 * scrollAnimation,
-                        ),
-                        child: RichText(
-                          text: TextSpan(
-                            text: 'Sun',
-                            style: TextStyle(
-                              fontFamily: 'Logo',
-                              fontSize: 44.0,
-                              letterSpacing: -1,
-                              color: Colors.white,
-                              shadows: <Shadow>[
-                                Shadow(
-                                  color: Colors.black.withOpacity(0.7),
-                                  offset: Offset(2.0, 1.0),
-                                  blurRadius: 5.0,
-                                )
+                child: ConstrainedBox(
+                  constraints:
+                      BoxConstraints(maxWidth: Metrics.DESKTOP_MAXIMUM_SIZE),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      // Logo
+                      Transform.scale(
+                        scale: getLogoScale(scrollAnimation),
+                        child: Transform.translate(
+                          offset: Offset(
+                            0,
+                            scrollAnimation < 0.75
+                                ? 0
+                                : navbarHeight * 1.5 * scrollAnimation,
+                          ),
+                          child: RichText(
+                            text: TextSpan(
+                              text: 'Sun',
+                              style: TextStyle(
+                                fontFamily: 'Logo',
+                                fontSize: 44.0,
+                                letterSpacing: -1,
+                                color: Colors.white,
+                                shadows: <Shadow>[
+                                  Shadow(
+                                    color: Colors.black.withOpacity(0.7),
+                                    offset: Offset(2.0, 1.0),
+                                    blurRadius: 5.0,
+                                  )
+                                ],
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: 'Foxx',
+                                  style: TextStyle(
+                                    fontSize: 48.0,
+                                    letterSpacing: 1,
+                                    color: Theme.of(context).accentColor,
+                                    fontFamily: 'Logo',
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                ),
                               ],
                             ),
-                            children: [
-                              TextSpan(
-                                text: 'Foxx',
-                                style: TextStyle(
-                                  fontSize: 48.0,
-                                  letterSpacing: 1,
-                                  color: Theme.of(context).accentColor,
-                                  fontFamily: 'Logo',
-                                  fontWeight: FontWeight.w300,
-                                ),
-                              ),
-                            ],
                           ),
                         ),
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          'Home',
-                          style: subheadStyle,
-                        ),
-                        SizedBox(width: Metrics.HORIZONTAL_MARGIN_DESKTOP),
-                        Text(
-                          'About Me',
-                          style: subheadStyle,
-                        ),
-                        SizedBox(width: Metrics.HORIZONTAL_MARGIN_DESKTOP),
-                        Text(
-                          'Music',
-                          style: subheadStyle,
-                        ),
-                        SizedBox(width: Metrics.HORIZONTAL_MARGIN_DESKTOP),
-                        Container(
-                          padding:
-                              EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).accentColor,
-                            borderRadius: BorderRadius.circular(20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'Home',
+                            style: subheadStyle,
                           ),
-                          child: Text(
-                            'Contact',
-                            style: subheadStyle.copyWith(
-                              shadows: [
-                                Shadow(
-                                  blurRadius: 1,
-                                  offset: Offset(1, 0.5),
-                                )
-                              ],
+                          SizedBox(width: Metrics.HORIZONTAL_MARGIN_DESKTOP),
+                          Text(
+                            'About Me',
+                            style: subheadStyle,
+                          ),
+                          SizedBox(width: Metrics.HORIZONTAL_MARGIN_DESKTOP),
+                          Text(
+                            'Music',
+                            style: subheadStyle,
+                          ),
+                          SizedBox(width: Metrics.HORIZONTAL_MARGIN_DESKTOP),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).accentColor,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Text(
+                              'Contact',
+                              style: subheadStyle.copyWith(
+                                shadows: [
+                                  Shadow(
+                                    blurRadius: 1,
+                                    offset: Offset(1, 0.5),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

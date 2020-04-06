@@ -10,6 +10,12 @@ ThemeData mainTheme = ThemeData(
       fontFamily: 'Montserrat',
       fontSize: 16.0,
       color: Colors.white,
+      fontWeight: FontWeight.w300,
+    ),
+    bodyText2: TextStyle(
+      fontFamily: 'Montserrat',
+      fontSize: 16.0,
+      color: Colors.white,
     ),
     subtitle1: TextStyle(
       fontFamily: 'Montserrat',

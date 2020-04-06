@@ -115,7 +115,7 @@ class _RoleCardState extends State<RoleCard>
                     child: content,
                     layoutBuilder: (currentChild, previousChildren) {
                       return Stack(
-                        fit: StackFit.loose,
+                        fit: StackFit.expand,
                         children: <Widget>[
                           ...previousChildren,
                           if (currentChild != null) currentChild,

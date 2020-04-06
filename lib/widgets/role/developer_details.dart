@@ -60,8 +60,9 @@ class DeveloperDetails extends StatelessWidget {
                                 text:
                                     "experienced with client-side tools\nthat target several platforms",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 24.0),
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20.0,
+                                ),
                               ),
                             ]),
                         textScaleFactor: isMobile ? 0.8 : 1,
