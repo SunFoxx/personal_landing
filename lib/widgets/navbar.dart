@@ -76,6 +76,45 @@ class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
     if (!isMobile) {
       return AnimatedBuilder(
         animation: _animation,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Home',
+              style: subheadStyle,
+            ),
+            SizedBox(width: Metrics.HORIZONTAL_MARGIN_DESKTOP),
+            Text(
+              'About Me',
+              style: subheadStyle,
+            ),
+            SizedBox(width: Metrics.HORIZONTAL_MARGIN_DESKTOP),
+            Text(
+              'Music',
+              style: subheadStyle,
+            ),
+            SizedBox(width: Metrics.HORIZONTAL_MARGIN_DESKTOP),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+              decoration: BoxDecoration(
+                color: Theme.of(context).accentColor,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Text(
+                'Contact',
+                style: subheadStyle.copyWith(
+                  shadows: [
+                    Shadow(
+                      blurRadius: 1,
+                      offset: Offset(1, 0.5),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
         builder: (_, child) {
           double scrollAnimation = _animation.value;
           return Transform.translate(
@@ -154,46 +193,7 @@ class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
                           ),
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            'Home',
-                            style: subheadStyle,
-                          ),
-                          SizedBox(width: Metrics.HORIZONTAL_MARGIN_DESKTOP),
-                          Text(
-                            'About Me',
-                            style: subheadStyle,
-                          ),
-                          SizedBox(width: Metrics.HORIZONTAL_MARGIN_DESKTOP),
-                          Text(
-                            'Music',
-                            style: subheadStyle,
-                          ),
-                          SizedBox(width: Metrics.HORIZONTAL_MARGIN_DESKTOP),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 5, horizontal: 10),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).accentColor,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Text(
-                              'Contact',
-                              style: subheadStyle.copyWith(
-                                shadows: [
-                                  Shadow(
-                                    blurRadius: 1,
-                                    offset: Offset(1, 0.5),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      child,
                     ],
                   ),
                 ),
@@ -211,6 +211,28 @@ class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
     return SafeArea(
       child: AnimatedBuilder(
         animation: _animation,
+        child: MouseHover(
+          child: PopupMenuButton(
+            color: Colors.transparent,
+            padding: EdgeInsets.zero,
+            elevation: 0,
+            offset: Offset(0, 28),
+            icon: Text(
+              '🔽',
+              style: TextStyle(
+                  fontSize: 25,
+                  shadows: [Shadow(blurRadius: 3.0, offset: Offset(1.0, 2.0))]),
+            ),
+            itemBuilder: (context) {
+              return [
+                NavigationMenuItem('Home'),
+                NavigationMenuItem('About Me'),
+                NavigationMenuItem('Music'),
+                NavigationMenuItem('Contact'),
+              ];
+            },
+          ),
+        ),
         builder: (_, child) {
           double scrollAnimation = _animation.value;
           return Transform.translate(
@@ -284,28 +306,7 @@ class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
                         ),
                       ),
                     ),
-                    MouseHover(
-                      child: PopupMenuButton(
-                        color: Colors.transparent,
-                        padding: EdgeInsets.zero,
-                        elevation: 0,
-                        offset: Offset(0, 28),
-                        icon: Text(
-                          '🔽',
-                          style: TextStyle(fontSize: 25, shadows: [
-                            Shadow(blurRadius: 3.0, offset: Offset(1.0, 2.0))
-                          ]),
-                        ),
-                        itemBuilder: (context) {
-                          return [
-                            NavigationMenuItem('Home'),
-                            NavigationMenuItem('About Me'),
-                            NavigationMenuItem('Music'),
-                            NavigationMenuItem('Contact'),
-                          ];
-                        },
-                      ),
-                    ),
+                    child,
                   ],
                 ),
               ),

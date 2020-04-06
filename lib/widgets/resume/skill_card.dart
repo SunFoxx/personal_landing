@@ -47,111 +47,110 @@ class _SkillCardState extends State<SkillCard>
       },
       child: AnimatedBuilder(
         animation: _appearAnimation,
-        builder: (_, child) => Opacity(
-          opacity: _appearAnimation.value,
-          child: Container(
-            width: 300,
-            height: 70,
-            child: Stack(
-              alignment: AlignmentDirectional.centerStart,
-              children: <Widget>[
-                // long bar
-                Container(
-                  margin: EdgeInsets.only(left: 65),
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).cardColor,
-                    border: Border.all(
-                      width: 2.0,
-                      color:
-                          Theme.of(context).primaryColorDark.withOpacity(0.4),
-                    ),
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(5.0),
-                      bottomRight: Radius.circular(5.0),
-                    ),
+        child: Container(
+          width: 300,
+          height: 70,
+          child: Stack(
+            alignment: AlignmentDirectional.centerStart,
+            children: <Widget>[
+              // long bar
+              Container(
+                margin: EdgeInsets.only(left: 65),
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).cardColor,
+                  border: Border.all(
+                    width: 2.0,
+                    color: Theme.of(context).primaryColorDark.withOpacity(0.4),
                   ),
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: <Widget>[
-                      // rating bar
-                      AnimatedBuilder(
-                        animation: _appearAnimation,
-                        builder: (_, child) => FractionallySizedBox(
-                          alignment: Alignment.centerLeft,
-                          widthFactor:
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(5.0),
+                    bottomRight: Radius.circular(5.0),
+                  ),
+                ),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: <Widget>[
+                    // rating bar
+                    AnimatedBuilder(
+                      animation: _appearAnimation,
+                      builder: (_, child) => FractionallySizedBox(
+                        alignment: Alignment.centerLeft,
+                        widthFactor:
+                            (widget.skill.rating * _appearAnimation.value) / 10,
+                        heightFactor: 1.0,
+                        child: Container(
+                          foregroundDecoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.white.withOpacity(0),
+                                Colors.white.withOpacity(0.6),
+                                Colors.white.withOpacity(0),
+                              ],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              stops: [0.05, 0.25, 0.45],
+                            ),
+                          ),
+                          decoration: BoxDecoration(
+                            color: Color.lerp(
+                              Colors.red,
+                              Colors.green,
                               (widget.skill.rating * _appearAnimation.value) /
                                   10,
-                          heightFactor: 1.0,
-                          child: Container(
-                            foregroundDecoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Colors.white.withOpacity(0),
-                                  Colors.white.withOpacity(0.6),
-                                  Colors.white.withOpacity(0),
-                                ],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                stops: [0.05, 0.25, 0.45],
-                              ),
                             ),
-                            decoration: BoxDecoration(
-                              color: Color.lerp(
-                                Colors.red,
-                                Colors.green,
-                                (widget.skill.rating * _appearAnimation.value) /
-                                    10,
-                              ),
-                              borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(5.0),
-                                bottomRight: Radius.circular(5.0),
-                              ),
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(5.0),
+                              bottomRight: Radius.circular(5.0),
                             ),
                           ),
                         ),
                       ),
-                      // Tech name
-                      Center(
-                        child: Text(
-                          widget.skill.name,
-                          style: Theme.of(context).textTheme.bodyText2,
-                        ),
+                    ),
+                    // Tech name
+                    Center(
+                      child: Text(
+                        widget.skill.name,
+                        style: Theme.of(context).textTheme.bodyText2,
                       ),
+                    ),
+                  ],
+                ),
+              ),
+              // icon ring
+              Container(
+                width: 100,
+                height: 70,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: RadialGradient(
+                    center: Alignment(0.75, 0.2),
+                    radius: 1.15,
+                    colors: [
+                      Colors.white,
+                      Colors.white,
+                      Colors.white.withOpacity(0),
                     ],
                   ),
                 ),
-                // icon ring
-                Container(
-                  width: 100,
-                  height: 70,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: RadialGradient(
-                      center: Alignment(0.75, 0.2),
-                      radius: 1.15,
-                      colors: [
-                        Colors.white,
-                        Colors.white,
-                        Colors.white.withOpacity(0),
-                      ],
-                    ),
-                  ),
-                  child: FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      child: Image.network(
-                        widget.skill.imageUrl,
-                        fit: BoxFit.scaleDown,
-                      ),
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    child: Image.network(
+                      widget.skill.imageUrl,
+                      fit: BoxFit.scaleDown,
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
+        ),
+        builder: (_, child) => Opacity(
+          opacity: _appearAnimation.value,
+          child: child,
         ),
       ),
     );
